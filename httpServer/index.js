@@ -1,34 +1,47 @@
 const http = require("http");
 const fs = require("fs");
-
-const getClientIp = (req) => {
-  const xForwordedFor = req.headers["x-forworded-for"];
-
-  let ip = xForwordedFor
-    ? xForwordedFor.split(",")[0].trim()
-    : req.connection.remoteAddress || req.socket.remoteAddress;
-
-  // Check if the IP is an IPv6-mapped IPv4 address
-  if (ip.startsWith("::ffff:")) {
-    ip = ip.substring(7);
-  }
-  return ip;
-};
+const url = require("url");
+const { getClientIp } = require("./utils");
 
 const server = http.createServer((req, resp) => {
-  const { method, url } = req;
+  const { method } = req;
   const clientIp = getClientIp(req);
-  fs.appendFile(
-    "./server.log",
-    `${new Date().toISOString()} - Request from ${clientIp}: ${method} ${url}\n`,
-    (err) => {
-      if (err) {
-        console.log("Fail to write log file: ", err);
-      }
-    }
-  );
 
-  resp.end("Hello response from http server");
+  const logMessage = `${new Date().toISOString()} - Request from ${clientIp}: ${method} ${
+    req.url
+  }
+}\n`;
+  // used url package
+  // const parsedUrl = url.parse(req.url);
+  const { query, pathname } = url.parse(req.url, true);
+
+  if (pathname === "/favicon.ico") {
+    return resp.end();
+  }
+
+  fs.appendFile("./server.log", logMessage, (err) => {
+    if (err) {
+      console.log("Fail to write log file: ", err);
+    }
+  });
+
+  switch (pathname) {
+    case "/":
+      resp.end("Homepage");
+      break;
+    case "/about":
+      const name = query.q;
+      console.log("about ", query);
+      resp.end(`I am ${name}`);
+      break;
+    case "/search":
+      const search = query.search_query;
+      console.log(query);
+      resp.end(`You are looking for ${search}`);
+      break;
+    default:
+      resp.end("404 page not found");
+  }
 });
 
 server.listen("3000", () => {
