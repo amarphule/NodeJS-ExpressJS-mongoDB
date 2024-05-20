@@ -4,3 +4,19 @@
 2024-05-20T15:46:25.899Z - Request: GET /favicon.ico
 2024-05-20T15:46:26.583Z - Request: GET /
 2024-05-20T15:46:26.987Z - Request: GET /favicon.ico
+2024-05-20T15:56:23.479Z - Request from ::1: GET /
+2024-05-20T15:56:24.331Z - Request from ::1: GET /favicon.ico
+2024-05-20T15:57:20.723Z - Request from ::ffff:127.0.0.1: GET /
+2024-05-20T15:57:21.721Z - Request from ::ffff:127.0.0.1: GET /favicon.ico
+2024-05-20T15:57:23.084Z - Request from ::ffff:127.0.0.1: GET /
+2024-05-20T15:57:23.598Z - Request from ::ffff:127.0.0.1: GET /favicon.ico
+2024-05-20T15:59:35.665Z - Request from ::ffff:127.0.0.1: GET /
+2024-05-20T15:59:36.059Z - Request from ::ffff:127.0.0.1: GET /favicon.ico
+2024-05-20T16:00:48.525Z - Request from ::ffff:127.0.0.1: GET /
+2024-05-20T16:00:48.843Z - Request from ::ffff:127.0.0.1: GET /favicon.ico
+2024-05-20T16:06:48.230Z - Request from 127.0.0.1: GET /
+2024-05-20T16:06:49.205Z - Request from 127.0.0.1: GET /favicon.ico
+2024-05-20T16:07:05.175Z - Request from 127.0.0.1: GET /contact
+2024-05-20T16:07:05.712Z - Request from 127.0.0.1: GET /favicon.ico
+2024-05-20T16:07:12.644Z - Request from 127.0.0.1: GET /
+2024-05-20T16:07:13.082Z - Request from 127.0.0.1: GET /favicon.ico
