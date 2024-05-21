@@ -1,8 +1,12 @@
 const express = require("express");
 const users = require("./MOCK_DATA.json");
+const fs = require("fs");
 
 const app = express();
 const PORT = 3000;
+
+// for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/users", (req, resp) => {
   return resp.json(users);
@@ -24,7 +28,13 @@ app
   });
 
 app.post("/api/users", (req, resp) => {
-  // Todo: Create user
+  const body = req.body;
+  users.push({ id: users.length + 1, ...body });
+
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
+    if (err) throw err;
+    resp.json({ status: "Success", id: users.length });
+  });
 });
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
