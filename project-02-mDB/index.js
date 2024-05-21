@@ -1,6 +1,4 @@
 const express = require("express");
-// const users = require("./MOCK_DATA.json");
-// const fs = require("fs");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -41,13 +39,30 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("user", userSchema);
 
-app.get("/users", (req, resp) => {
-  const users = User.find({});
+app.get("/users", async (req, resp) => {
+  const users = await User.find({});
   return resp.json(users);
 });
 
 // as "/api/users/:id" route is comman for these request we used .route() method
-// s
+app
+  .route("/api/users/:id")
+  .get(async (req, resp) => {
+    const user = await User.findById(req.params.id);
+    resp.status(200).json({ message: "Success", user });
+  })
+  .patch(async (req, resp) => {
+    const id = req.params.id;
+    const body = req.body;
+
+    await User.findByIdAndUpdate(id, body);
+    resp.status(200).json({ message: "Success" });
+  })
+  .delete(async (req, resp) => {
+    const id = req.params.id;
+    await User.deleteOne({ _id: id });
+    resp.status(200).json({ message: "Success" });
+  });
 
 app.post("/api/users", async (req, resp) => {
   const body = req.body;
