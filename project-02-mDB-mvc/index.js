@@ -9,9 +9,7 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 
 // DB connection
-connectToDb(
-  "mongodb+srv://amardeepphule:RqJ1MXQiCIm0WOA4@cluster0.as2x79w.mongodb.net/nodejs_practice"
-)
+dbConnect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to database"))
   .catch((err) => console.log("DB error: ", err));
 
