@@ -38,7 +38,17 @@ async function handleRedirectUrl(req, resp) {
 
   resp.status(200).redirect(entry.redirectUrl);
 }
+
+async function handleHistory(req, resp) {
+  const shortId = req.params.shortID;
+  const result = await Url.findOne({ shortId });
+  resp.status(200).json({
+    visitedCount: result.visitHistory.length,
+    analytics: result.visitHistory,
+  });
+}
 module.exports = {
   handleGetShortUrl,
   handleRedirectUrl,
+  handleHistory,
 };
