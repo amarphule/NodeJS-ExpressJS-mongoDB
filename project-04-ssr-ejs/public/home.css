@@ -1,0 +1,82 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+.main {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.url-form {
+  margin-bottom: 20px;
+}
+
+.url-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.url-form input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.url-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.url-form button:hover {
+  background-color: #0056b3;
+}
+
+.url-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.url-table th,
+.url-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.url-table th {
+  background-color: #f2f2f2;
+}
+
+.url-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.url-table tr:hover {
+  background-color: #f1f1f1;
+}
