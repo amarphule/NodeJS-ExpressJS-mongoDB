@@ -1,6 +1,7 @@
 const express = require("express");
 const { dbConnect } = require("./dbConnect");
 const urlRouter = require("./routes/url");
+const staticRouter = require("./routes/staticRoutes");
 const path = require("path");
 
 // Load environment variables from .env file
@@ -16,7 +17,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Set the directory where the template files are located
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.resolve("./views"));
 
 // Middleware to parse incoming requests
 app.use(express.json());
@@ -29,5 +30,6 @@ dbConnect(process.env.MONGODB_URI)
 
 // Routes
 app.use("/url", urlRouter);
+app.use("/", staticRouter);
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`));

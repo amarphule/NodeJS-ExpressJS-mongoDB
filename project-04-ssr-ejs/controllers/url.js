@@ -19,7 +19,7 @@ async function handleGetShortUrl(req, resp) {
     visitHistory: [],
   });
 
-  resp.status(201).json({ message: "Success", shortId: id });
+  return resp.render("home", { id });
 }
 
 async function handleRedirectUrl(req, resp) {
@@ -34,15 +34,14 @@ async function handleRedirectUrl(req, resp) {
       },
     }
   );
-  console.log({ entry });
 
-  resp.status(200).redirect(entry.redirectUrl);
+  return resp.status(200).redirect(entry.redirectUrl);
 }
 
 async function handleHistory(req, resp) {
   const shortId = req.params.shortID;
   const result = await Url.findOne({ shortId });
-  resp.status(200).json({
+  return resp.status(200).json({
     visitedCount: result.visitHistory.length,
     analytics: result.visitHistory,
   });
@@ -50,7 +49,7 @@ async function handleHistory(req, resp) {
 
 async function handleGetAllurl(req, resp) {
   const urls = await Url.find({});
-  resp.render("Home", { urls });
+  return resp.render("home", { urls });
 }
 
 module.exports = {

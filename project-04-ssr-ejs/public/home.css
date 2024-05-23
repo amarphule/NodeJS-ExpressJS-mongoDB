@@ -23,7 +23,9 @@ html {
   max-width: 800px;
   text-align: center;
 }
-
+.shorturl {
+  color: #2457c4;
+}
 .url-form {
   margin-bottom: 20px;
 }
